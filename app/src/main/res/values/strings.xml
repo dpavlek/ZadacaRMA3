@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ZadacaRMATasky</string>
+    <string name="categoryAddTxt">Add Category</string>
+    <string name="taskAddTxt">Add Task</string>
+    <string name="CategoryLabelTxt">Category Name:</string>
+    <string name="etCategoryNameHint">Enter Name...</string>
+    <string name="btnAddCategoryTxt">Add</string>
+    <string name="tvTaskName">Name:</string>
+    <string name="tvAddTaskTitle">Add Task</string>
+    <string name="tvTaskDate">Due date:</string>
+    <string name="tvPriority">Priority:</string>
+    <string name="tvCategory">Category:</string>
+    <string name="btnAddTxt">Add</string>
+    <string name="CategoryAddFailTxt">Failed To Add Category</string>
+    <string name="CategoryAddSuccessTxt">Category Added</string>
+    <string name="CategoryAddNoTxt">Type Some Text First</string>
+</resources>

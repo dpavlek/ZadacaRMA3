@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="Priority">
+        <item>Low</item>
+        <item>Normal</item>
+        <item>High</item>
+        <item>Very High</item>
+    </string-array>
+
+</resources>
