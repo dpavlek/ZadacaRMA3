@@ -26,5 +26,27 @@
         android:text="@string/btnAddTxt"
         android:padding="10dp"/>
 
+    <TextView
+        android:id="@+id/tvDelCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tvDelCatTxt"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:padding="10dp"/>
+
+    <Spinner
+        android:id="@+id/spnDelCat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"/>
+
+    <Button
+        android:id="@+id/btnDeleteCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnDelCatTxt"
+        android:padding="10dp"/>
+
 
 </LinearLayout>

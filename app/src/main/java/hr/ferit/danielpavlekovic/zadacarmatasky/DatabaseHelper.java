@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 class DatabaseHelper extends SQLiteOpenHelper {
 
+    private static DatabaseHelper sInstanceHelper;
+
     private static final int DATABASE_VERSION=1;
     public static final String DATABASE_NAME = "tasks.db";
     public static final String TABLE_NAME = "tasks_table";
@@ -18,6 +20,13 @@ class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_3 = "DUEDATE";
     public static final String COL_4 = "CATEGORY";
     public static final String COL_5 = "PRIORITY";
+
+    public static synchronized DatabaseHelper getInstance(Context context) {
+        if (sInstanceHelper == null) {
+            sInstanceHelper = new DatabaseHelper(context.getApplicationContext());
+        }
+        return sInstanceHelper;
+    }
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);

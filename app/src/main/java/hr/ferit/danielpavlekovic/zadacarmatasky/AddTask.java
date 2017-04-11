@@ -24,9 +24,11 @@ public class AddTask extends Activity implements View.OnClickListener {
 
     private void getCategoriesFromDB() {
         Cursor res = DatabaseCategory.getInstance(getApplicationContext()).getAllData();
+        Categories = new String[res.getCount()];
         int i=0;
         while(res.moveToNext()){
             Categories[i]=(res.getString(0));
+            i++;
         }
     }
 
