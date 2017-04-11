@@ -82,14 +82,9 @@ public class AddTask extends Activity implements View.OnClickListener {
     }
 
     private void setupTask() {
+
         try {
-            task.setDueDate(DueFormat.parse(String.valueOf(etDueDate.getText())));
-        } catch (ParseException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Wrong Date Entered", Toast.LENGTH_SHORT).show();
-            Log.e(TAG, "setupTask: ", e);
-        }
-        try {
+            task.setDueDate(etDueDate.getText().toString());
             task.setName(etTaskName.getText().toString());
             task.setPriority(spnPriority.getSelectedItem().toString());
             task.setCategory(spnCategory.getSelectedItem().toString());

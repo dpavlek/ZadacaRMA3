@@ -1,5 +1,6 @@
 package hr.ferit.danielpavlekovic.zadacarmatasky;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,14 +22,29 @@ class Task {
         this.Name=Name;
     }
 
-    Task(){
-        DateTimeCreated = new Date();
-        CreatedFormat.format(DateTimeCreated);
+    Task(String created, String name, String duedate, String category, String priority){
+        this.Name=name;
+        this.Category = category;
+        this.Priority = priority;
+        try {
+            DateTimeCreated = CreatedFormat.parse(created);
+            DueDate = DueFormat.parse(duedate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void setDueDate(Date dueDate) {
-        DueDate = dueDate;
-        DueFormat.format(DueDate);
+    Task(){
+        this.DateTimeCreated = new Date();
+        this.CreatedFormat.format(DateTimeCreated);
+    }
+
+    public void setDueDate(String dueDate) {
+        try {
+            DueDate = DueFormat.parse(dueDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setCategory(String category) {
@@ -43,12 +59,12 @@ class Task {
         Priority = priority;
     }
 
-    public Date getDateTimeCreated() {
-        return DateTimeCreated;
+    public String getDateTimeCreated() {
+        return CreatedFormat.format(DateTimeCreated);
     }
 
-    public Date getDueDate() {
-        return DueDate;
+    public String getDueDate() {
+        return DueFormat.format(DueDate);
     }
 
     public String getPriority() {

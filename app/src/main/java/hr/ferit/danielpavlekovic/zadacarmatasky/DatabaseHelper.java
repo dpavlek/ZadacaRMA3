@@ -16,7 +16,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     private static DatabaseHelper sInstanceHelper;
 
-    private static final int DATABASE_VERSION=2;
+    private static final int DATABASE_VERSION=3;
     public static final String DATABASE_NAME = "tasks.db";
     public static final String TABLE_NAME = "tasks_table";
     public static final String COL_1 = "DATECREATED";
@@ -39,7 +39,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String SQL_String = "CREATE TABLE " + TABLE_NAME + " (" + COL_1 + " DATE PRIMARY KEY," + COL_2 + " TEXT," + COL_3 + " DATE," + COL_4 + " TEXT," + COL_5 + " TEXT);";
+        String SQL_String = "CREATE TABLE " + TABLE_NAME + " (" + COL_1 + " TEXT PRIMARY KEY," + COL_2 + " TEXT," + COL_3 + " TEXT," + COL_4 + " TEXT," + COL_5 + " TEXT);";
         db.execSQL(SQL_String);
     }
 
@@ -49,13 +49,13 @@ class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(Date datecreated, String name, Date duedate, String category, String priority){
+    public boolean insertData(String datecreated, String name, String duedate, String category, String priority){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1, String.valueOf(datecreated));
+        contentValues.put(COL_1, datecreated);
         contentValues.put(COL_2, name);
-        contentValues.put(COL_3, String.valueOf(duedate));
+        contentValues.put(COL_3, duedate);
         contentValues.put(COL_4, category);
         contentValues.put(COL_5, priority);
         long result = db.insert(TABLE_NAME,null,contentValues);
@@ -73,6 +73,6 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     public Integer deleteData(Date id){
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME,"DUEDATE = ?",new String[] {String.valueOf(id)});
+        return db.delete(TABLE_NAME,"DATECREATED = ?",new String[] {String.valueOf(id)});
     }
 }
