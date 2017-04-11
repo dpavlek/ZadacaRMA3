@@ -16,7 +16,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     private static DatabaseHelper sInstanceHelper;
 
-    private static final int DATABASE_VERSION=1;
+    private static final int DATABASE_VERSION=2;
     public static final String DATABASE_NAME = "tasks.db";
     public static final String TABLE_NAME = "tasks_table";
     public static final String COL_1 = "DATECREATED";
@@ -33,13 +33,13 @@ class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String SQL_String = "CREATE TABLE " + TABLE_NAME + "(" + COL_1 + " DATE PRIMARY KEY," + COL_2 + " TEXT," + COL_3 + " DATE," + COL_4 +"TEXT,"+ COL_5 + "TEXT" + ")";
+        String SQL_String = "CREATE TABLE " + TABLE_NAME + " (" + COL_1 + " DATE PRIMARY KEY," + COL_2 + " TEXT," + COL_3 + " DATE," + COL_4 + " TEXT," + COL_5 + " TEXT);";
         db.execSQL(SQL_String);
     }
 

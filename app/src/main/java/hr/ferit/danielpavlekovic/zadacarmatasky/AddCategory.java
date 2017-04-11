@@ -24,6 +24,7 @@ public class AddCategory extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_category);
         DatabaseCategory.getInstance(this);
+        DatabaseHelper.getInstance(this);
         getCategoriesFromDB();
         initUI();
     }

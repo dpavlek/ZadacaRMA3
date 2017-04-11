@@ -1,6 +1,7 @@
 package hr.ferit.danielpavlekovic.zadacarmatasky;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import java.util.Date;
 public class AddTask extends Activity implements View.OnClickListener {
 
     private static final String TAG = "PARSE_ERROR";
+    private static final String TAG_DB = "DBCATEGORIES";
     private Spinner spnCategory, spnPriority;
     private Button btnAdd;
     private String[] Categories;
@@ -30,6 +32,8 @@ public class AddTask extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
+        DatabaseCategory.getInstance(this);
+        DatabaseHelper.getInstance(this);
         getCategoriesFromDB();
         initUI();
     }
@@ -43,6 +47,7 @@ public class AddTask extends Activity implements View.OnClickListener {
             i++;
         }
     }
+
 
     private void initUI() {
         etTaskName = (EditText) findViewById(R.id.etTaskName);
