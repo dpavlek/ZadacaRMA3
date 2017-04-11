@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">ZadacaRMATasky</string>
-    <string name="categoryAddTxt">Add Category</string>
+    <string name="categoryAddTxt">Manage Categories</string>
     <string name="taskAddTxt">Add Task</string>
     <string name="CategoryLabelTxt">Add Category:</string>
     <string name="etCategoryNameHint">Enter Name...</string>
@@ -16,4 +16,5 @@
     <string name="CategoryAddNoTxt">Type Some Text First</string>
     <string name="tvDelCatTxt">Delete Category:</string>
     <string name="btnDelCatTxt">Delete</string>
+    <string name="dueDateHint">yyyy-mm-dd</string>
 </resources>

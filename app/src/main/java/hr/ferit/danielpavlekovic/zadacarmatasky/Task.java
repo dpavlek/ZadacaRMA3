@@ -9,8 +9,7 @@ import java.util.Date;
 
 class Task {
 
-    private String Name, Category;
-    private int Priority;
+    private String Name, Category,Priority;
     private Date DateTimeCreated, DueDate;
 
     private SimpleDateFormat DueFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -29,6 +28,7 @@ class Task {
 
     public void setDueDate(Date dueDate) {
         DueDate = dueDate;
+        DueFormat.format(DueDate);
     }
 
     public void setCategory(String category) {
@@ -39,7 +39,7 @@ class Task {
         Name = name;
     }
 
-    public void setPriority(int priority) {
+    public void setPriority(String priority) {
         Priority = priority;
     }
 
@@ -51,7 +51,7 @@ class Task {
         return DueDate;
     }
 
-    public int getPriority() {
+    public String getPriority() {
         return Priority;
     }
 
