@@ -70,7 +70,7 @@ public class AddTask extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         Intent ReturnToMain = new Intent(getApplicationContext(), ListActivity.class);
         setupTask();
-        boolean Inserted = DatabaseHelper.getInstance(getApplicationContext()).insertData(task.getDateTimeCreated(),task.getName(),task.getDueDate(),task.getCategory(),task.getPriority());
+        boolean Inserted = DatabaseHelper.getInstance(getApplicationContext()).insertData(task.getName(),task.getDueDate(),task.getCategory(),task.getPriority());
         if(Inserted==true) {
             Toast.makeText(AddTask.this,"Added",Toast.LENGTH_SHORT).show();
         }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -19,7 +20,6 @@ public class ListActivity extends Activity implements View.OnClickListener {
     Button btnAddTask, btnAddCategory;
 
     private SimpleDateFormat DueFormat = new SimpleDateFormat("yyyy-MM-dd");
-    private SimpleDateFormat CreatedFormat = new SimpleDateFormat("yyMMddHHmmss");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class ListActivity extends Activity implements View.OnClickListener {
         ArrayList<Task> tasks = new ArrayList<>();
         Cursor res = DatabaseHelper.getInstance(getApplicationContext()).getAllData();
         while(res.moveToNext()){
-                tasks.add(new Task(res.getString(0),res.getString(1),res.getString(2),res.getString(3),res.getString(4)));
+                tasks.add(new Task(res.getString(1),res.getString(2),res.getString(3),res.getString(4)));
 
         }
         return tasks;
@@ -47,6 +47,14 @@ public class ListActivity extends Activity implements View.OnClickListener {
         btnAddTask = (Button) findViewById(R.id.btnAddTaskMain);
         btnAddTask.setOnClickListener(this);
         btnAddCategory.setOnClickListener(this);
+        this.lvTasks.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                mTaskAdapter.deleteAt(position);
+                DatabaseHelper.getInstance(getApplicationContext()).deleteData(position);
+                return true;
+            }
+        });
 
     }
 

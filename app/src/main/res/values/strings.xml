@@ -17,4 +17,5 @@
     <string name="tvDelCatTxt">Delete Category:</string>
     <string name="btnDelCatTxt">Delete</string>
     <string name="dueDateHint">yyyy-mm-dd</string>
+    <string name="cdTaskPriority">Task Priority Color</string>
 </resources>

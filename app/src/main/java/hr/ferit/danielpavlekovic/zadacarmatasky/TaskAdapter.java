@@ -63,7 +63,26 @@ class TaskAdapter extends BaseAdapter{
         taskViewHolder.tvTaskPriority.setText(task.getPriority());
         taskViewHolder.tvTaskCategory.setText(task.getCategory());
         taskViewHolder.tvTaskDueDate.setText((CharSequence) task.getDueDate());
+        switch(task.getPriority()){
+            case("Low"):
+                taskViewHolder.ivPriority.setBackgroundColor(Color.GREEN);
+                break;
+            case("Normal"):
+                taskViewHolder.ivPriority.setBackgroundColor(Color.BLUE);
+                break;
+            case("High"):
+                taskViewHolder.ivPriority.setBackgroundColor(Color.YELLOW);
+                break;
+            case("Very High"):
+                taskViewHolder.ivPriority.setBackgroundColor(Color.RED);
+                break;
+        }
         return convertView;
+    }
+
+    public void deleteAt(int position) {
+        this.mTasks.remove(position);
+        this.notifyDataSetChanged();
     }
 }
 
