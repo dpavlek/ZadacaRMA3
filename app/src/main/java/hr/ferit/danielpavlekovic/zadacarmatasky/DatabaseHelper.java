@@ -16,7 +16,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     private static DatabaseHelper sInstanceHelper;
 
-    private static final int DATABASE_VERSION=5;
+    private static final int DATABASE_VERSION=6;
     public static final String DATABASE_NAME = "tasks.db";
     public static final String TABLE_NAME = "tasks_table";
     public static final String COL_1 = "ID";
@@ -39,7 +39,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String SQL_String = "CREATE TABLE " + TABLE_NAME + " (" + COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + COL_2 + " TEXT," + COL_3 + " TEXT," + COL_4 + " TEXT," + COL_5 + " TEXT);";
+        String SQL_String = "CREATE TABLE " + TABLE_NAME + " (" + COL_1 + " TEXT PRIMARY KEY," + COL_2 + " TEXT," + COL_3 + " TEXT," + COL_4 + " TEXT," + COL_5 + " TEXT);";
         db.execSQL(SQL_String);
     }
 
@@ -49,10 +49,11 @@ class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String name, String duedate, String category, String priority){
+    public boolean insertData(String datecreated, String name, String duedate, String category, String priority){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_1, datecreated);
         contentValues.put(COL_2, name);
         contentValues.put(COL_3, duedate);
         contentValues.put(COL_4, category);
@@ -70,8 +71,8 @@ class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public boolean deleteData(String position){
+    public boolean deleteData(String id){
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME,"ID = " + String.valueOf(position), null)>0;
+        return db.delete(TABLE_NAME,"ID = " + id, null)>0;
     }
 }

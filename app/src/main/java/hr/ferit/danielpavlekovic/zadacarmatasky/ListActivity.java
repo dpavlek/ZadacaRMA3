@@ -36,7 +36,7 @@ public class ListActivity extends Activity implements View.OnClickListener {
     private ArrayList<Task> loadTasks() {
         Cursor res = DatabaseHelper.getInstance(getApplicationContext()).getAllData();
         while(res.moveToNext()){
-                tasks.add(new Task(res.getString(1),res.getString(2),res.getString(3),res.getString(4)));
+                tasks.add(new Task(res.getString(0),res.getString(1),res.getString(2),res.getString(3),res.getString(4)));
 
         }
         return tasks;
@@ -53,9 +53,9 @@ public class ListActivity extends Activity implements View.OnClickListener {
         this.lvTasks.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                String id = tasks.get(position).
+                String itemCreated = tasks.get(position).getDateTimeCreated();
 
-                if(DatabaseHelper.getInstance(getApplicationContext()).deleteData(String.valueOf(position)))
+                if(DatabaseHelper.getInstance(getApplicationContext()).deleteData(String.valueOf(itemCreated)))
                     Toast.makeText(ListActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(ListActivity.this, "Not Deleted", Toast.LENGTH_SHORT).show();

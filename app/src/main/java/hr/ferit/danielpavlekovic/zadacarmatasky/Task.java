@@ -11,19 +11,23 @@ import java.util.Date;
 class Task {
 
     private String Name, Category,Priority;
-    private Date DueDate;
+    private Date DueDate,DateTimeCreated;
 
     private SimpleDateFormat DueFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat CreatedFormat = new SimpleDateFormat("yyMMddHHmmss");
 
     Task(String Name){
+        DateTimeCreated = new Date();
+        CreatedFormat.format(DateTimeCreated);
         this.Name=Name;
     }
 
-    Task(String name, String duedate, String category, String priority){
+    Task(String created, String name, String duedate, String category, String priority){
         this.Name=name;
         this.Category = category;
         this.Priority = priority;
         try {
+            DateTimeCreated = CreatedFormat.parse(created);
             DueDate = DueFormat.parse(duedate);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -31,6 +35,8 @@ class Task {
     }
 
     Task(){
+        this.DateTimeCreated = new Date();
+        this.CreatedFormat.format(DateTimeCreated);
     }
 
     public void setDueDate(String dueDate) {
@@ -67,5 +73,9 @@ class Task {
 
     public String getName() {
         return Name;
+    }
+
+    public String getDateTimeCreated() {
+        return CreatedFormat.format(DateTimeCreated);
     }
 }
