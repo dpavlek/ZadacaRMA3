@@ -16,7 +16,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     private static DatabaseHelper sInstanceHelper;
 
-    private static final int DATABASE_VERSION=4;
+    private static final int DATABASE_VERSION=5;
     public static final String DATABASE_NAME = "tasks.db";
     public static final String TABLE_NAME = "tasks_table";
     public static final String COL_1 = "ID";
@@ -70,8 +70,8 @@ class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public Integer deleteData(int position){
+    public boolean deleteData(String position){
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME,"ID = " + (position+1), null);
+        return db.delete(TABLE_NAME,"ID = " + String.valueOf(position), null)>0;
     }
 }
