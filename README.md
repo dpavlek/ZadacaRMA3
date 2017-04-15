@@ -1,4 +1,8 @@
 # My project's README
+
+Daniel Pavleković
+DRC LV1
+
 Zadaća 3. - Tasky - Aplikacija za pohranu obaveza
 
 Potrebno je kreirati aplikaciju koja koristi jednostavnu bazu podataka za kreiranje korisničkih zabilješki(neka vrsta To do liste). Nužno je omogućiti korisniku kreiranje zabilješki, spremanje u bazu, pregled zabilješki u obliku liste te njihovo brisanje. Koristiti primjere u ovoj vježbi te naučeno na proteklim vježbama.
