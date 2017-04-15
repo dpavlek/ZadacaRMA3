@@ -70,8 +70,12 @@ public class AddTask extends Activity implements View.OnClickListener {
     public void onClick(View v) {
 
         Intent ReturnToMain = new Intent(getApplicationContext(), ListActivity.class);
+<<<<<<< HEAD
 
             if(setupTask()){
+=======
+        if(setupTask()) {
+>>>>>>> development
             boolean Inserted = DatabaseHelper.getInstance(getApplicationContext()).insertData(task.getDateTimeCreated(), task.getName(), task.getDueDate(), task.getCategory(), task.getPriority());
             if (Inserted == true) {
                 Toast.makeText(AddTask.this, "Added", Toast.LENGTH_SHORT).show();
@@ -83,6 +87,7 @@ public class AddTask extends Activity implements View.OnClickListener {
     }
 
     private boolean setupTask() {
+<<<<<<< HEAD
             String checkDate, checkName,checkCategory;
 
             checkDate = etDueDate.getText().toString();
@@ -100,5 +105,24 @@ public class AddTask extends Activity implements View.OnClickListener {
                 task.setCategory(spnCategory.getSelectedItem().toString());
                 return true;
             }
+=======
+
+        String checkName, checkDate, checkCategory;
+
+        checkCategory = spnCategory.getSelectedItem().toString();
+        checkDate = etDueDate.getText().toString();
+        checkName = etTaskName.getText().toString();
+        if(checkCategory.matches("") || checkDate.matches("") || checkName.matches("")){
+            Toast.makeText(this, "All data not entered!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else {
+            task.setDueDate(etDueDate.getText().toString());
+            task.setName(etTaskName.getText().toString());
+            task.setPriority(spnPriority.getSelectedItem().toString());
+            task.setCategory(spnCategory.getSelectedItem().toString());
+            return true;
+        }
+>>>>>>> development
     }
 }
