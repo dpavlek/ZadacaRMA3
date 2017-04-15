@@ -68,31 +68,37 @@ public class AddTask extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent ReturnToMain = new Intent(getApplicationContext(), ListActivity.class);
-        setupTask();
-        boolean Inserted = DatabaseHelper.getInstance(getApplicationContext()).insertData(task.getDateTimeCreated(),task.getName(),task.getDueDate(),task.getCategory(),task.getPriority());
-        if(Inserted==true) {
-            Toast.makeText(AddTask.this,"Added",Toast.LENGTH_SHORT).show();
-        }
 
-        else{
-            Toast.makeText(AddTask.this,"Added....NOT!",Toast.LENGTH_SHORT).show();
+        Intent ReturnToMain = new Intent(getApplicationContext(), ListActivity.class);
+
+            if(setupTask()){
+            boolean Inserted = DatabaseHelper.getInstance(getApplicationContext()).insertData(task.getDateTimeCreated(), task.getName(), task.getDueDate(), task.getCategory(), task.getPriority());
+            if (Inserted == true) {
+                Toast.makeText(AddTask.this, "Added", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(AddTask.this, "Added....NOT!", Toast.LENGTH_SHORT).show();
+            }
+            startActivity(ReturnToMain);
         }
-        startActivity(ReturnToMain);
     }
 
-    private void setupTask() {
+    private boolean setupTask() {
+            String checkDate, checkName,checkCategory;
 
-        try {
-            task.setDueDate(etDueDate.getText().toString());
-            task.setName(etTaskName.getText().toString());
-            task.setPriority(spnPriority.getSelectedItem().toString());
-            task.setCategory(spnCategory.getSelectedItem().toString());
-        }
-        catch(Exception err){
-            err.printStackTrace();
-            Toast.makeText(this, "All data not entered", Toast.LENGTH_SHORT).show();
-            Log.e(TAG, "setupTask: ", err);
-        }
+            checkDate = etDueDate.getText().toString();
+            checkName = etTaskName.getText().toString();
+            checkCategory = spnCategory.getSelectedItem().toString();
+
+            if(checkDate.matches("") || checkName.matches("") || checkCategory.matches("")){
+                Toast.makeText(this, "All data not entered!", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            else {
+                task.setDueDate(etDueDate.getText().toString());
+                task.setName(etTaskName.getText().toString());
+                task.setPriority(spnPriority.getSelectedItem().toString());
+                task.setCategory(spnCategory.getSelectedItem().toString());
+                return true;
+            }
     }
 }
